@@ -1,0 +1,7 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 本地历史备份和运行日志
+backups/
+*.log

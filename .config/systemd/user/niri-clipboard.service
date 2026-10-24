@@ -1,0 +1,13 @@
+[Unit]
+Description=Niri clipboard history (cliphist)
+PartOf=niri.service
+After=niri.service
+Requisite=niri.service
+ConditionEnvironment=XDG_CURRENT_DESKTOP=niri
+
+[Service]
+Type=simple
+UMask=0077
+ExecStart=/usr/bin/wl-paste --watch /bin/sh /home/aoba/.config/niri/script/clipboard-store.sh
+Restart=on-failure
+RestartSec=2

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "快捷键帮助",
+    "script": "keybindings.py",
+    "args": []
+  },
+  {
+    "name": "重启 Waybar",
+    "script": "restart-waybar.sh",
+    "args": []
+  },
+  {
+    "name": "切换壁纸",
+    "script": "wallpaper.py",
+    "args": []
+  },
+  {
+    "name": "管理剪贴板历史",
+    "script": "clipboard.py",
+    "args": ["manage"]
+  }
+]

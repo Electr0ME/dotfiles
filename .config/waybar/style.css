@@ -1,0 +1,60 @@
+/* Catppuccin Mocha · GTK 3 CSS */
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color text #cdd6f4;
+@define-color subtext #a6adc8;
+@define-color mauve #cba6f7;
+@define-color blue #89b4fa;
+@define-color green #a6e3a1;
+@define-color peach #fab387;
+@define-color red #f38ba8;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK SC";
+  font-size: 12px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+window#waybar {
+  background: alpha(@base, 0.96);
+  color: @text;
+  border: none;
+  border-radius: 0;
+}
+tooltip {
+  background: @mantle;
+  color: @text;
+  border: 1px solid @mauve;
+  border-radius: 0;
+}
+#custom-launcher { color: @mauve; font-size: 20px; padding: 0 16px; }
+#workspaces button {
+  color: @subtext;
+  background: transparent;
+  padding: 0 10px;
+  margin: 0;
+  border-radius: 0;
+}
+#workspaces button.active { background: @mauve; color: @base; font-weight: bold; }
+#workspaces button:hover { background: @surface1; color: @text; box-shadow: none; }
+#workspaces button.urgent { background: @red; color: @base; }
+#window { color: @subtext; margin: 0; }
+#clock { color: @text; font-weight: bold; padding: 0 14px; }
+#cpu, #memory, #network, #wireplumber, #tray, #custom-notification, #custom-lock {
+  padding: 0 10px;
+  margin: 0;
+  border-radius: 0;
+}
+#cpu { color: @blue; }
+#memory { color: @mauve; }
+#network { color: @green; }
+#network.disconnected { color: @red; }
+#wireplumber { color: @peach; }
+#wireplumber.muted { color: @subtext; }
+#custom-notification { color: @mauve; font-size: 16px; }
+#custom-lock { color: @blue; margin: 0; }
+#custom-launcher:hover, #custom-notification:hover, #custom-lock:hover,
+#network:hover, #wireplumber:hover { background: @surface0; }
