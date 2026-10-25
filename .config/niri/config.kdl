@@ -15,7 +15,8 @@ include "outputs.kdl"
 // 布局与窗口外观
 layout {
     gaps 12
-    background-color "#1e1e2e"
+    // 透明背景让 backdrop 中的壁纸透出，避免在 overview 中被工作区背景遮挡
+    background-color "transparent"
     center-focused-column "on-overflow"
 
     preset-column-widths {
@@ -46,6 +47,21 @@ layout {
         spread 5
         offset x=0 y=5
         color "#11111b88"
+    }
+}
+
+// 壁纸固定在 backdrop，不随工作区一起缩放
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+overview {
+    backdrop-color "#1e1e2e"
+
+    // 关闭 overview 中的工作区阴影
+    workspace-shadow {
+        off
     }
 }
 
