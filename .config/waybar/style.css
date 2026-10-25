@@ -43,18 +43,21 @@ tooltip {
 #workspaces button.urgent { background: @red; color: @base; }
 #window { color: @subtext; margin: 0; }
 #clock { color: @text; font-weight: bold; padding: 0 14px; }
-#cpu, #memory, #network, #wireplumber, #tray, #custom-notification, #custom-lock {
+#custom-cpu, #memory, #network, #wireplumber, #tray, #custom-notification, #custom-lock {
   padding: 0 10px;
   margin: 0;
   border-radius: 0;
 }
-#cpu { color: @blue; }
+#custom-cpu { color: @blue; }
+#custom-cpu.warning { color: @peach; }
+#custom-cpu.critical { color: @red; }
 #memory { color: @mauve; }
 #network { color: @green; }
 #network.disconnected { color: @red; }
 #wireplumber { color: @peach; }
 #wireplumber.muted { color: @subtext; }
 #custom-notification { color: @mauve; font-size: 16px; }
+#custom-notification.dnd { color: @subtext; }
 #custom-lock { color: @blue; margin: 0; }
 #custom-launcher:hover, #custom-notification:hover, #custom-lock:hover,
 #network:hover, #wireplumber:hover { background: @surface0; }

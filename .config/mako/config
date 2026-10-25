@@ -1,0 +1,43 @@
+# Catppuccin Mocha · mako
+font=JetBrainsMono Nerd Font 11
+background-color=#1e1e2eee
+text-color=#cdd6f4
+border-size=1
+border-color=#45475a
+border-radius=12
+padding=10,14
+margin=8
+outer-margin=12
+width=380
+height=220
+max-visible=5
+# 不保留过期通知历史，因此不再提供“恢复最近通知”。
+max-history=0
+default-timeout=7000
+icons=1
+max-icon-size=48
+icon-border-radius=6
+markup=1
+actions=1
+layer=overlay
+anchor=top-right
+group-by=app-name
+progress-color=over #cba6f7
+
+format=<b>%s</b>\n%b
+
+on-button-left=invoke-default-action
+on-button-middle=dismiss
+on-button-right=dismiss
+on-touch=dismiss
+
+[urgency=low]
+border-color=#45475a
+default-timeout=4000
+
+[urgency=critical]
+border-color=#f38ba8
+default-timeout=0
+
+[mode=do-not-disturb]
+invisible=1

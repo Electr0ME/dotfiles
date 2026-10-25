@@ -20,8 +20,7 @@ binds {
     Mod+E hotkey-overlay-title="文件管理器" { spawn "nautilus"; }
     Super+V repeat=false hotkey-overlay-title="剪贴板历史" { spawn "python3" "/home/aoba/.config/niri/script/clipboard.py"; }
     Super+Alt+Shift+V repeat=false hotkey-overlay-title="管理剪贴板历史" { spawn "python3" "/home/aoba/.config/niri/script/clipboard.py" "manage"; }
-    Mod+N hotkey-overlay-title="通知中心" { spawn "swaync-client" "-t" "-sw"; }
-    Mod+Shift+N hotkey-overlay-title="勿扰模式" { spawn "swaync-client" "-d" "-sw"; }
+    Mod+Shift+N hotkey-overlay-title="勿扰模式" { spawn "makoctl" "mode" "-t" "do-not-disturb"; }
     Mod+Shift+S hotkey-overlay-title="区域截图" { screenshot; }
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "sh" "/home/aoba/.config/niri/lock.sh"; }
     Mod+Shift+Escape hotkey-overlay-title="电源选项" { spawn "python3" "/home/aoba/.config/niri/script/power.py"; }
