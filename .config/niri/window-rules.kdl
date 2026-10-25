@@ -1,20 +1,16 @@
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://niri-wm.github.io/niri/Configuration:-Window-Rules
-
+// Kitty：最大化并启用模糊
 window-rule {
-	match app-id="^kitty$"
+    match app-id="^kitty$"
     draw-border-with-background false
     open-maximized true
-    
+
     background-effect {
-    	blur true
-    	xray false
+        blur true
+        xray false
     }
 }
 
-// 快捷键帮助、脚本菜单、壁纸预览、剪贴板历史与电源菜单：
-// 独立 app-id，不影响普通 Kitty。
+// 工具窗口：浮动并聚焦
 window-rule {
     match app-id="^niri-keybindings$"
     match app-id="^niri-script-launcher$"
@@ -23,47 +19,16 @@ window-rule {
     match app-id="^niri-power$"
     open-floating true
     open-focused true
-    // 使用 Kitty 指定的 80 列 × 24 行，不强制像素尺寸。
     default-column-width {}
-    // Niri 默认将新建浮动窗口放在可用屏幕中央。
     draw-border-with-background false
 }
 
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
 }
-
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
-}
-
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-window-rule {
-    // geometry-corner-radius 4
-    // clip-to-geometry true
-}
-
