@@ -8,6 +8,7 @@
 - `.config/waybar/`：状态栏配置与样式。
 - `.config/waybar/scripts/`：自定义 CPU 用量模块和 mako 勿扰状态模块。
 - `.config/mako/`：mako 通知守护进程配置（已替代 SwayNC）。
+- `.config/fastfetch/`：fastfetch 系统信息展示配置。
 - `.config/swaylock/`：锁屏配置。
 - `.config/fuzzel/`：应用启动器配置。
 - `.config/kitty/`：终端配置与 Catppuccin Mocha 主题（不包含历史 `.bak-*` 文件）。
@@ -29,4 +30,4 @@ systemctl --user daemon-reload
 
 配置保留了原始 `/home/aoba` 绝对路径；在其他用户下使用时，需要调整 Niri 配置、Waybar 自定义模块脚本和脚本中的路径。`outputs.kdl` 也需要按显示器情况调整。
 
-运行这些配置需要预先安装相应程序，例如 niri、waybar、mako、swaylock、swayidle、swaybg、fuzzel、kitty、Python 3、wl-clipboard、cliphist、nm-connection-editor、pavucontrol；本仓库不安装软件，也不自动启用服务。
+运行这些配置需要预先安装相应程序，例如 niri、waybar、mako、swaylock、swayidle、swaybg、fuzzel、kitty、fastfetch、Python 3、wl-clipboard、cliphist、nm-connection-editor、pavucontrol；本仓库不安装软件，也不自动启用服务。
