@@ -1,0 +1,59 @@
+/* Catppuccin Mocha */
+window#osd {
+  min-width: 300px;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid #45475a;
+  background: rgba(30, 30, 46, 0.92);
+}
+
+window#osd #container {
+  margin: 1px 8px;
+}
+
+window#osd image {
+  transform: scale(0.5);
+  margin: -7px;
+  color: #cdd6f4;
+}
+
+window#osd label {
+  color: #cdd6f4;
+}
+
+window#osd progressbar:disabled,
+window#osd image:disabled {
+  opacity: 0.5;
+}
+
+window#osd progressbar,
+window#osd segmentedprogress {
+  min-height: 4px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+}
+
+window#osd trough,
+window#osd segment {
+  min-height: inherit;
+  border-radius: inherit;
+  border: none;
+  background: #45475a;
+}
+
+window#osd progress,
+window#osd segment.active {
+  min-height: inherit;
+  border-radius: inherit;
+  border: none;
+  background: #cba6f7;
+}
+
+window#osd segment {
+  margin-left: 8px;
+}
+
+window#osd segment:first-child {
+  margin-left: 0;
+}

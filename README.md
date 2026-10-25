@@ -8,6 +8,7 @@
 - `.config/waybar/`：状态栏配置与样式。
 - `.config/waybar/scripts/`：自定义 CPU 用量模块和 mako 勿扰状态模块。
 - `.config/mako/`：mako 通知守护进程配置（已替代 SwayNC）。
+- `.config/swayosd/`：音量与媒体 OSD 配置及 Catppuccin Mocha 样式。
 - `.config/fastfetch/`：fastfetch 系统信息展示配置。
 - `.config/swaylock/`：锁屏配置。
 - `.config/fuzzel/`：应用启动器配置。
@@ -39,7 +40,7 @@ systemctl --user daemon-reload
 ```sh
 sudo pacman -S --needed \
   niri xwayland-satellite \
-  waybar mako swaybg swayidle swaylock \
+  waybar mako swayosd swaybg swayidle swaylock \
   fuzzel kitty nautilus polkit-gnome \
   xdg-desktop-portal xdg-desktop-portal-gnome \
   pipewire pipewire-pulse wireplumber pavucontrol \
@@ -49,11 +50,11 @@ sudo pacman -S --needed \
   ttf-jetbrains-mono-nerd noto-fonts-cjk papirus-icon-theme
 ```
 
-- 桌面会话：niri、waybar、mako、swaybg、swayidle、swaylock、fuzzel、kitty、polkit-gnome、xdg-desktop-portal(-gnome)；xwayland-satellite 用于运行 X11 应用。
+- 桌面会话：niri、waybar、mako、swayosd、swaybg、swayidle、swaylock、fuzzel、kitty、polkit-gnome、xdg-desktop-portal(-gnome)；xwayland-satellite 用于运行 X11 应用。
 - 音频与网络：pipewire、pipewire-pulse、wireplumber、pavucontrol、networkmanager、nm-connection-editor。
 - 输入法：fcitx5、fcitx5-gtk、fcitx5-qt；中文输入另需 fcitx5-chinese-addons，图形配置工具为 fcitx5-configtool。
 - 脚本与工具：python（仅使用标准库）、imagemagick（壁纸转换）、wl-clipboard、cliphist、libnotify（可选，用于 notify-send）、playerctl（媒体键），以及 gawk、procps-ng、util-linux 等基础工具。
 - 字体与主题：ttf-jetbrains-mono-nerd、noto-fonts-cjk、papirus-icon-theme；GTK 主题 `catppuccin-mocha-mauve-standard+default` 需从 AUR 或源码安装到 `~/.local/share/themes`，缺失时回退默认主题。
 - 可选：nautilus（`Mod+E`）、fastfetch、xdg-desktop-portal-gtk。
 
-不需要 swaync、brightnessctl 或 grim；截图与 Overview 等功能由 niri 自身提供。本仓库不安装软件，也不自动启用服务。
+不需要 swaync、brightnessctl 或 grim；截图与 Overview 等功能由 niri 自身提供。音量、麦克风和媒体键通过 `swayosd-client` 显示 OSD；需要 CapsLock/NumLock OSD 时可另行启用系统服务 `swayosd-libinput-backend.service`。本仓库不安装软件，也不自动启用服务。

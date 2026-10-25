@@ -77,6 +77,18 @@ def description(body):
                           ('set-window-height ', '调整窗口高度 ')]:
         if action.startswith(prefix):
             return label + action[len(prefix):].strip('"')
+    if 'swayosd-client' in action:
+        normalized = action.replace('"', '')
+        for option, label in [('--output-volume +10', '增加音量'),
+                              ('--output-volume -10', '降低音量'),
+                              ('--output-volume mute-toggle', '切换音量静音'),
+                              ('--input-volume mute-toggle', '切换麦克风静音'),
+                              ('--playerctl play-pause', '播放 / 暂停'),
+                              ('--playerctl stop', '停止播放'),
+                              ('--playerctl prev', '上一曲'),
+                              ('--playerctl next', '下一曲')]:
+            if option in normalized:
+                return label
     if 'wpctl set-volume' in action:
         return '增加音量' if '0.1+' in action else '降低音量'
     if 'wpctl set-mute' in action:

@@ -12,6 +12,8 @@ start waybar waybar
 # mako 取代 swaync 作为通知守护进程；先停掉旧服务，避免 D-Bus 名称冲突。
 systemctl --user stop swaync.service >>"$state/notifications.log" 2>&1 || true
 start mako mako
+# 音量、麦克风与媒体 OSD
+start swayosd-server swayosd-server
 # Session-scoped service; stops with niri and is not enabled for GNOME.
 systemctl --user start niri-clipboard.service >>"$state/clipboard.log" 2>&1
 wallpaper="$HOME/.config/niri/wallpapers/wallpaper.png"

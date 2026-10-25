@@ -1,0 +1,6 @@
+[server]
+# 音量上限与 wpctl 绑定保持一致的 100%
+max_volume = 100
+show_percentage = false
+top_margin = 0.95
+duration = 1200
