@@ -18,5 +18,10 @@
     "name": "管理剪贴板历史",
     "script": "clipboard.py",
     "args": ["manage"]
+  },
+  {
+    "name": "电源选项",
+    "script": "power.py",
+    "args": []
   }
 ]

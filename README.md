@@ -9,6 +9,7 @@
 - `.config/swaync/`：通知中心配置与样式。
 - `.config/swaylock/`：锁屏配置。
 - `.config/fuzzel/`：应用启动器配置。
+- `.config/kitty/`：终端配置与 Catppuccin Mocha 主题（不包含历史 `.bak-*` 文件）。
 - `.config/systemd/user/niri-clipboard.service`：Niri 会话剪贴板服务。
 
 不包含历史 `backups/`、Python 缓存、运行日志或剪贴板历史。原有配置未作修改。

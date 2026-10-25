@@ -10,7 +10,7 @@
   "spacing": 4,
   "modules-left": ["niri/workspaces"],
   "modules-center": ["niri/window"],
-  "modules-right": ["tray","cpu", "memory", "network", "wireplumber", "custom/notification", "custom/lock", "clock"],
+  "modules-right": ["tray","cpu", "memory", "network", "wireplumber", "custom/notification", "clock"],
   "custom/launcher": {
     "format": "󰣇",
     "tooltip-format": "应用启动器 · Super+D",

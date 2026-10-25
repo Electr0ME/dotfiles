@@ -24,6 +24,8 @@ binds {
     Mod+Shift+N hotkey-overlay-title="勿扰模式" { spawn "swaync-client" "-d" "-sw"; }
     Mod+Shift+S hotkey-overlay-title="区域截图" { screenshot; }
     Super+Alt+L hotkey-overlay-title="锁屏" { spawn "sh" "/home/aoba/.config/niri/lock.sh"; }
+    Mod+Shift+Escape hotkey-overlay-title="电源选项" { spawn "python3" "/home/aoba/.config/niri/script/power.py"; }
+    XF86PowerOff repeat=false hotkey-overlay-title="电源选项" { spawn "python3" "/home/aoba/.config/niri/script/power.py"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -268,8 +270,8 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Mod+Print { screenshot-screen; }
+    Ctrl+Print { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
