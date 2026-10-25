@@ -4,7 +4,7 @@
 
 ## 备份内容
 
-- `.config/niri/`：主配置、显示器配置、窗口规则、快捷键、会话/锁屏/空闲脚本、辅助脚本，以及 `wallpapers/wallpaper.png`（当前壁纸）。
+- `.config/niri/`：主配置、显示器配置、窗口规则、快捷键、会话/锁屏/空闲脚本、辅助脚本（`script/`，含共享的 `lib/` 菜单与预览模块），以及 `wallpapers/wallpaper.png`（当前壁纸）。
 - `.config/waybar/`：状态栏配置与样式。
 - `.config/waybar/scripts/`：自定义 CPU 用量模块和 mako 勿扰状态模块。
 - `.config/mako/`：mako 通知守护进程配置（已替代 SwayNC）。
@@ -19,7 +19,11 @@
 
 > 通知已从 SwayNC 切换到 mako。mako 没有独立的通知中心面板；`Mod+Shift+N` 或点击 Waybar 通知图标可切换勿扰模式。
 
-> `~/.config/niri/wallpapers/` 只保存当前壁纸 `wallpaper.png`。`Mod+X` → “切换壁纸”从 `~/Pictures/Wallpapers/` 选择图片时，会先用 ImageMagick 将其转换为 PNG 并替换该文件，再重启 swaybg；会话启动和锁屏也直接使用这个文件。壁纸通过 layer rule 固定在 Overview 的 backdrop 中，不随工作区缩放。
+> `~/.config/niri/wallpapers/` 只保存当前壁纸 `wallpaper.png`。`Mod+X` → “切换壁纸”从 `~/Pictures/Wallpapers/` 选择图片时，会先用 ImageMagick 将其转换为 PNG 并替换该文件，再重启 swaybg；会话启动和锁屏也直接使用这个文件。壁纸通过 layer rule 固定在 Overview 的 backdrop 中，不随工作区缩放。壁纸和剪贴板图片预览会在后台预生成缩略图并缓存到 `~/.cache/niri-preview`；缓存未命中时先显示原图，生成完成后再切换为缩略图。
+
+> 剪贴板历史使用 Kitty TUI（后端仍为 cliphist），图片条目会显示预览；Enter 复制，`Ctrl+D` 删除单条，`Ctrl+X` 清空全部（不再二次确认）。
+
+> 快捷键菜单只读取 `binds.kdl` 中带 `hotkey-overlay-title` 的条目；新增快捷键时请补充中文标题。
 
 ## 恢复
 
@@ -53,8 +57,8 @@ sudo pacman -S --needed \
 - 桌面会话：niri、waybar、mako、swayosd、swaybg、swayidle、swaylock、fuzzel、kitty、polkit-gnome、xdg-desktop-portal(-gnome)；xwayland-satellite 用于运行 X11 应用。
 - 音频与网络：pipewire、pipewire-pulse、wireplumber、pavucontrol、networkmanager、nm-connection-editor。
 - 输入法：fcitx5、fcitx5-gtk、fcitx5-qt；中文输入另需 fcitx5-chinese-addons，图形配置工具为 fcitx5-configtool。
-- 脚本与工具：python（仅使用标准库）、imagemagick（壁纸转换）、wl-clipboard、cliphist、libnotify（可选，用于 notify-send）、playerctl（媒体键），以及 gawk、procps-ng、util-linux 等基础工具。
+- 脚本与工具：python（仅使用标准库）、imagemagick（壁纸转换与预览回退）、libvips（`vipsthumbnail`，更快的预览缩略图；可选）、file（MIME 检测）、wl-clipboard、cliphist、libnotify（可选，用于 notify-send）、playerctl（媒体键），以及 gawk、procps-ng、util-linux 等基础工具。
 - 字体与主题：ttf-jetbrains-mono-nerd、noto-fonts-cjk、papirus-icon-theme；GTK 主题 `catppuccin-mocha-mauve-standard+default` 需从 AUR 或源码安装到 `~/.local/share/themes`，缺失时回退默认主题。
-- 可选：nautilus（`Mod+E`）、fastfetch、xdg-desktop-portal-gtk。
+- 可选：nautilus（`Mod+E`）、fastfetch、xdg-desktop-portal-gtk、libvips。
 
 不需要 swaync、brightnessctl 或 grim；截图与 Overview 等功能由 niri 自身提供。音量、麦克风和媒体键通过 `swayosd-client` 显示 OSD；需要 CapsLock/NumLock OSD 时可另行启用系统服务 `swayosd-libinput-backend.service`。本仓库不安装软件，也不自动启用服务。

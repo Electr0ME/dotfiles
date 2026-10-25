@@ -15,9 +15,9 @@
     "args": []
   },
   {
-    "name": "管理剪贴板历史",
+    "name": "剪贴板历史",
     "script": "clipboard.py",
-    "args": ["manage"]
+    "args": []
   },
   {
     "name": "电源选项",
