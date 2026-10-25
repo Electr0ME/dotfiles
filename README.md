@@ -4,7 +4,7 @@
 
 ## 备份内容
 
-- `.config/niri/`：主配置、显示器配置、窗口规则、快捷键、会话/锁屏/空闲脚本、辅助脚本和默认壁纸。
+- `.config/niri/`：主配置、显示器配置、窗口规则、快捷键、会话/锁屏/空闲脚本、辅助脚本，以及 `wallpapers/wallpaper.png`（当前壁纸）。
 - `.config/waybar/`：状态栏配置与样式。
 - `.config/waybar/scripts/`：自定义 CPU 用量模块和 mako 勿扰状态模块。
 - `.config/mako/`：mako 通知守护进程配置（已替代 SwayNC）。
@@ -18,6 +18,8 @@
 
 > 通知已从 SwayNC 切换到 mako。mako 没有独立的通知中心面板；`Mod+Shift+N` 或点击 Waybar 通知图标可切换勿扰模式。
 
+> `~/.config/niri/wallpapers/` 只保存当前壁纸 `wallpaper.png`。`Mod+X` → “切换壁纸”从 `~/Pictures/Wallpapers/` 选择图片时，会先用 ImageMagick 将其转换为 PNG 并替换该文件，再重启 swaybg；会话启动和锁屏也直接使用这个文件。
+
 ## 恢复
 
 先备份目标机器现有配置，再在仓库根目录执行（将覆盖同名文件）：
@@ -28,6 +30,6 @@ cp -a .config/. "$HOME/.config/"
 systemctl --user daemon-reload
 ```
 
-配置保留了原始 `/home/aoba` 绝对路径；在其他用户下使用时，需要调整 Niri 配置、Waybar 自定义模块脚本和脚本中的路径。`outputs.kdl` 也需要按显示器情况调整。
+配置使用 `~`、`sh -c` 和 systemd 的 `%h` 等可移植路径，不再依赖固定的用户主目录；`outputs.kdl` 仍需要按显示器情况调整。
 
-运行这些配置需要预先安装相应程序，例如 niri、waybar、mako、swaylock、swayidle、swaybg、fuzzel、kitty、fastfetch、Python 3、wl-clipboard、cliphist、nm-connection-editor、pavucontrol；本仓库不安装软件，也不自动启用服务。
+运行这些配置需要预先安装相应程序，例如 niri、waybar、mako、swaylock、swayidle、swaybg、fuzzel、kitty、fastfetch、Python 3、ImageMagick、wl-clipboard、cliphist、nm-connection-editor、pavucontrol；本仓库不安装软件，也不自动启用服务。

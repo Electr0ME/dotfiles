@@ -6,6 +6,7 @@ import fcntl
 import json
 import os
 from pathlib import Path
+import shutil
 import signal
 import struct
 import subprocess
@@ -17,6 +18,8 @@ import unicodedata
 
 WALLPAPERS = Path.home() / 'Pictures/Wallpapers'
 STATE = Path(os.environ.get('XDG_STATE_HOME') or Path.home() / '.local/state') / 'niri'
+CONFIG = Path(os.environ.get('XDG_CONFIG_HOME') or Path.home() / '.config')
+WALLPAPER = CONFIG / 'niri/wallpapers/wallpaper.png'
 EXTENSIONS = {'.jpg', '.jpeg', '.png', '.webp', '.bmp', '.gif', '.svg'}
 APP_ID = 'niri-wallpaper'
 CLEAR_IMAGES = b'\x1b_Ga=d,d=A,q=2;\x1b\\'
@@ -195,10 +198,35 @@ def choose(screen, paths):
         sys.stdout.buffer.flush()
 
 
+def install(path):
+    """转换为 PNG 并替换 wallpapers/wallpaper.png。"""
+    WALLPAPER.parent.mkdir(parents=True, exist_ok=True)
+    temp = WALLPAPER.with_name(f'.{WALLPAPER.name}.tmp')
+    try:
+        if path.suffix.lower() == '.png':
+            shutil.copyfile(path, temp)
+        else:
+            tool = shutil.which('magick') or shutil.which('convert')
+            if not tool:
+                raise RuntimeError('需要安装 ImageMagick（magick 或 convert）才能转换壁纸')
+            result = subprocess.run(
+                [tool, str(path), '-strip', '-define', 'png:compression-level=9',
+                 f'PNG:{temp}'],
+                stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+            if result.returncode:
+                lines = result.stderr.strip().splitlines()
+                detail = f'：{lines[-1]}' if lines else ''
+                raise RuntimeError(f'壁纸转换失败{detail}')
+        temp.replace(WALLPAPER)
+    finally:
+        temp.unlink(missing_ok=True)
+
+
 def apply(path):
     path = path.resolve()
     if not path.is_file():
         raise RuntimeError(f'壁纸不存在：{path}')
+    install(path)
     STATE.mkdir(parents=True, exist_ok=True)
     existing = subprocess.run(['pgrep', '-u', str(os.getuid()), '-x', 'swaybg'],
                               capture_output=True, text=True)
@@ -206,7 +234,7 @@ def apply(path):
         raise RuntimeError('无法获取已有 swaybg 进程')
     old_pids = [int(pid) for pid in existing.stdout.split()]
     with (STATE / 'swaybg.log').open('a') as log:
-        process = subprocess.Popen(['swaybg', '-i', str(path), '-m', 'fill'],
+        process = subprocess.Popen(['swaybg', '-i', str(WALLPAPER), '-m', 'fill'],
                                    stdin=subprocess.DEVNULL, stdout=log,
                                    stderr=subprocess.STDOUT, start_new_session=True)
     time.sleep(0.4)
@@ -217,10 +245,7 @@ def apply(path):
             os.kill(pid, signal.SIGTERM)
         except ProcessLookupError:
             pass
-    temp = STATE / 'wallpaper.tmp'
-    temp.write_text(str(path) + '\n')
-    temp.replace(STATE / 'wallpaper')
-    print(f'已切换壁纸：{path}', flush=True)
+    print(f'已切换壁纸：{path} → {WALLPAPER}', flush=True)
 
 
 def launch():

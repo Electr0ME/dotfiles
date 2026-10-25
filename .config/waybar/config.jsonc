@@ -8,9 +8,11 @@
   "margin-left": 0,
   "margin-right": 0,
   "spacing": 4,
-  "modules-left": ["niri/workspaces"],
-  "modules-center": ["niri/window"],
-  "modules-right": ["tray","custom/cpu", "memory", "network", "wireplumber", "custom/notification", "clock"],
+
+  "modules-left": ["niri/workspaces","niri/window"],
+  "modules-center": ["clock"],
+  "modules-right": ["custom/cpu", "memory", "network", "wireplumber", "custom/notification","tray"],
+
   "custom/launcher": {
     "format": "󰣇",
     "tooltip-format": "应用启动器 · Super+D",
@@ -31,7 +33,7 @@
     "tooltip-format": "<tt><small>{calendar}</small></tt>"
   },
   "custom/cpu": {
-    "exec": "sh /home/aoba/.config/waybar/scripts/cpu.sh",
+    "exec": "sh -c 'exec ~/.config/waybar/scripts/cpu.sh'",
     "interval": 2,
     "return-type": "json",
     "format": " {text}",
@@ -67,7 +69,7 @@
     "tooltip": true,
     "format": "{text}",
     "return-type": "json",
-    "exec": "sh /home/aoba/.config/waybar/scripts/notification.sh",
+    "exec": "sh -c 'exec ~/.config/waybar/scripts/notification.sh'",
     "interval": 2,
     "on-click": "makoctl mode -t do-not-disturb"
   },

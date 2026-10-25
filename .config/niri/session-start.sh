@@ -14,14 +14,10 @@ systemctl --user stop swaync.service >>"$state/notifications.log" 2>&1 || true
 start mako mako
 # Session-scoped service; stops with niri and is not enabled for GNOME.
 systemctl --user start niri-clipboard.service >>"$state/clipboard.log" 2>&1
-wallpaper="$HOME/.config/niri/wallpapers/mocha.png"
-if [ -r "$state/wallpaper" ]; then
-    IFS= read -r saved_wallpaper < "$state/wallpaper" || true
-    if [ -f "$saved_wallpaper" ]; then
-        wallpaper=$saved_wallpaper
-    fi
+wallpaper="$HOME/.config/niri/wallpapers/wallpaper.png"
+if [ -f "$wallpaper" ]; then
+    start swaybg swaybg -i "$wallpaper" -m fill
 fi
-start swaybg swaybg -i "$wallpaper" -m fill
 # fcitx5 is already provided by XDG autostart in a full niri session.
 # niri >=25.08 starts xwayland-satellite on demand, so do not start it twice.
 start polkit-gnome-au /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

@@ -11,20 +11,20 @@ binds {
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.
-    Mod+Shift+Slash hotkey-overlay-title="快捷键帮助" { spawn "python3" "/home/aoba/.config/niri/script/keybindings.py"; }
+    Mod+Shift+Slash hotkey-overlay-title="快捷键帮助" { spawn-sh "python3 ~/.config/niri/script/keybindings.py"; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+D hotkey-overlay-title="启动应用" { spawn "fuzzel"; }
-    Mod+X hotkey-overlay-title="脚本启动器" { spawn "python3" "/home/aoba/.config/niri/script/script-launcher.py"; }
+    Mod+X hotkey-overlay-title="脚本启动器" { spawn-sh "python3 ~/.config/niri/script/script-launcher.py"; }
     Mod+Return hotkey-overlay-title="终端" { spawn "kitty"; }
     Mod+E hotkey-overlay-title="文件管理器" { spawn "nautilus"; }
-    Super+V repeat=false hotkey-overlay-title="剪贴板历史" { spawn "python3" "/home/aoba/.config/niri/script/clipboard.py"; }
-    Super+Alt+Shift+V repeat=false hotkey-overlay-title="管理剪贴板历史" { spawn "python3" "/home/aoba/.config/niri/script/clipboard.py" "manage"; }
+    Super+V repeat=false hotkey-overlay-title="剪贴板历史" { spawn-sh "python3 ~/.config/niri/script/clipboard.py"; }
+    Super+Alt+Shift+V repeat=false hotkey-overlay-title="管理剪贴板历史" { spawn-sh "python3 ~/.config/niri/script/clipboard.py manage"; }
     Mod+Shift+N hotkey-overlay-title="勿扰模式" { spawn "makoctl" "mode" "-t" "do-not-disturb"; }
     Mod+Shift+S hotkey-overlay-title="区域截图" { screenshot; }
-    Super+Alt+L hotkey-overlay-title="锁屏" { spawn "sh" "/home/aoba/.config/niri/lock.sh"; }
-    Mod+Shift+Escape hotkey-overlay-title="电源选项" { spawn "python3" "/home/aoba/.config/niri/script/power.py"; }
-    XF86PowerOff repeat=false hotkey-overlay-title="电源选项" { spawn "python3" "/home/aoba/.config/niri/script/power.py"; }
+    Super+Alt+L hotkey-overlay-title="锁屏" { spawn-sh "sh ~/.config/niri/lock.sh"; }
+    Mod+Shift+Escape hotkey-overlay-title="电源选项" { spawn-sh "python3 ~/.config/niri/script/power.py"; }
+    XF86PowerOff repeat=false hotkey-overlay-title="电源选项" { spawn-sh "python3 ~/.config/niri/script/power.py"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
